@@ -76,6 +76,14 @@
     "data": null
   },
   {
+    "name": "geektime_0/platform/tests/test_jenkins.py::test_jenkins",
+    "data": null
+  },
+  {
+    "name": "geektime_0/platform/tests/test_jenkins.py",
+    "data": null
+  },
+  {
     "name": "geektime_0/platform/tests/test_route.py::TestCase::test_demo",
     "data": null
   },

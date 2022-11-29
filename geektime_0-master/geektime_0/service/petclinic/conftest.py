@@ -11,14 +11,14 @@ def pytest_collection_modifyitems(config, items):
     测试用例收集
     """
     log.debug("all items")
-    log.debug(items)
+    # log.debug(items)
     testcase_list = []
 
     cache = set()
     for item in items:
         testcase = {'name': item.nodeid, 'data': None}
         testcase_list.append(testcase)
-
+        log.debug(item.nodeid)
         items = item.nodeid.split('::')
         for i in range(1, len(items)):
             suite_name = "::".join(items[0:i])

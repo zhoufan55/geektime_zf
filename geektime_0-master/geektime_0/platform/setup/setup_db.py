@@ -10,7 +10,7 @@ if __name__ == '__main__':
     with app.app_context():
         db.drop_all()
         db.create_all()
-        user = User.query.filter(User.username == 'u2').first()
-        print(user)
-        all = User.query.filter(User.username != '').all()
-        print(all)
+        # user = User.query.filter(User.username == 'u2').first()
+        # print(user)
+        # all = User.query.filter(User.username != '').all()
+        # print(all)

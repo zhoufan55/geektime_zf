@@ -1,3 +1,4 @@
+import logging
 from dataclasses import asdict
 
 from flask import Blueprint, request, jsonify
@@ -36,16 +37,17 @@ def case_get():
 
 
 @testcase_bp.route('/testcase', methods=['POST'])
-def case_post():
+def testcase_post():
     # 等待jenkins分析完测试结果并回传测试用例
     if request.args.get('batch'):
         # 批量上传测试用例
         # 去重判断
         git = request.args.get('git')
         app.logger.info(git)
-        app.logger.info(request.data)
         testcase_list = request.json
+        app.logger.info(testcase_list)
         for item in testcase_list:
+            logging.info(item)
             testcase = TestCase(**item)
             testcase.data = git
             db.session.add(testcase)
@@ -74,3 +76,4 @@ def testcase_import():
         return jsonify(errcode=0)
     else:
         return jsonify(errcode=1)
+
