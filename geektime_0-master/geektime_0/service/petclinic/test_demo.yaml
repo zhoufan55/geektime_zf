@@ -1,0 +1,25 @@
+test_web:
+  - find: { id: demo }
+  - click: { }
+  - find: { css: .input_box }
+  - send_keys: xxxxx
+
+topic:
+  get:
+    - get
+    - post
+
+  delete:
+    - post
+    - delete
+
+test_topic:
+  - topic1: { init: topic, params: { id: 1 } }
+  - topic2: { init: topic, params: { id: 1 } }
+  - topic1.get: { }
+  - topic2.delete: { }
+
+test_service:
+  - get: { url: https://ceshiren.com/t/topic/8807.json }
+  - post: { url: https://ceshiren.com/t/topic/8807.json }
+  - assert: 1==2

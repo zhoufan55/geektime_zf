@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  # 指定Deployment的名称
+  name: ${project}-${branch}
+  #namespace: ${branch}
+  namespace: ${myNamespace}
+  # 指定Deployment的标签
+  labels:
+    app: ${project}-${branch}
+spec:
+  # 指定创建的Pod副本数量
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 0
+  # 定义如何查找要管理的Pod
+  selector:
+    # 管理标签app为litemall-wx-web的Pod
+    matchLabels:
+      app: ${project}-${branch}
+  # 指定创建Pod的模板
+  template:
+    metadata:
+      # 给Pod打上app:litemall-wx-web标签
+      labels:
+        app: ${project}-${branch}
+    # Pod的模板规约
+    spec:
+      containers:
+          - name: ${project}-${branch}
+        # 指定容器镜像 docker pull hub.ceshiren.com/automaticevaluation/automaticevaluation-pre:6
+            image: hub.ceshiren.com/${group}/${project}-${branch}:${version}
+        # 指定开放的端口
+            ports:
+              - containerPort: 5000
+      # 配置拉取私有仓库的用户名密码资源信息，secret资源中会有一个已经配置好的数据
+      imagePullSecrets:
+          - name: harbor

@@ -1,0 +1,89 @@
+
+
+String getRepoUrl() {
+  return scm.getUserRemoteConfigs()[0].getUrl()
+}
+
+String getRepoName() {
+    return scm.getUserRemoteConfigs()[0].getUrl().tokenize('/').last().split("\\.")[0].replace('_', '-').toLowerCase()
+}
+
+String getGroupName() {
+    return scm.getUserRemoteConfigs()[0].getUrl().split(':')[-1].split('/')[0..-2].join('/')
+}
+
+//仓库url
+def PROJECT_URL = getRepoUrl()
+//仓库名称
+def PROJECT_NAME = getRepoName()
+//仓库组名
+def GROUP_NAME = getGroupName()
+
+//分支名称
+def branchName = "${env.BRANCH_NAME}"
+//命令空间
+def myNamespace = "${branchName.split('_')[0].split('-')[0]}"
+//podTemplate的标签
+def label = "${PROJECT_NAME}-${branchName}-${UUID.randomUUID().toString()}"
+//默认镜像版本号
+def tag = "v-${BUILD_ID}"
+//默认镜像名称
+def imageName = "hub.ceshiren.com/${GROUP_NAME}/${PROJECT_NAME}-"
+
+podTemplate(
+label: label,
+cloud: 'kubernetes',
+workspaceVolume: hostPathWorkspaceVolume('/tmp/jenkins')
+) {
+
+
+  node(label) {
+    stage('Git阶段') {
+      echo "1、开始拉取代码"
+
+      sh 'pwd'
+      sh 'ls'
+      //拉取代码
+      //git branch: "${branchName}", changelog: true, credentialsId: "robot_gitlab", url: "${PROJECT_URL}"
+
+      //获取git的commitId作为镜像版本号
+      tag = sh(returnStdout: true, script: 'git rev-parse --short HEAD').trim()
+
+      echo "label =" + label
+      echo "group name = ${GROUP_NAME}"
+      echo "group name = ${PROJECT_URL}"
+      echo "project name =  ${PROJECT_NAME}"
+      echo "imageName = ${imageName}"
+      echo "namespace = ${myNamespace}"
+      echo "build_tag = " + tag
+      echo "branch name = ${branchName}"
+
+      print("branchName== " + branchName)
+      print("!branchName.toString().startsWith(\"dev\")== " + !branchName.toString().startsWith("dev"))
+      print("!branchName.toString().startsWith(\"pre\")== " + !branchName.toString().startsWith("pre"))
+      print("!branchName.toString().startsWith(\"main\")== " + !branchName.toString().startsWith("main"))
+      //只有以 dev/pre/main开头(含dev/pre/main)的分支才允许构建
+
+      //设置镜像的版本号
+      imageName = imageName + branchName + ":" + tag
+
+    }
+
+    stage('Docker阶段') {
+      container('docker') {
+        echo "3、开始读取Maven pom变量，并执行Docker编译、推送、删除"
+        sh "docker build -f devops/Dockerfile -t ${imageName} ."
+        //sh "docker push ${imageName}"
+      }
+    }
+    stage('更新阶段') {
+      container('jnlp') {
+        stage('deploy') {
+          sh "ls ./devops/"
+          sh "kubectl apply -f devops/*.yml"
+        }
+      }
+
+    }
+  }
+}

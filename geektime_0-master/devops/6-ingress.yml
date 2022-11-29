@@ -1,0 +1,31 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    nginx.ingress.kubernetes.io/proxy-body-size: 512m
+    nginx.ingress.kubernetes.io/proxy-connect-timeout: '15'
+    nginx.ingress.kubernetes.io/proxy-read-timeout: '600'
+    nginx.ingress.kubernetes.io/service-upstream: 'true'
+    prometheus.io/http-probe: 'true' # 用于黑盒监控
+    cert-manager.io/cluster-issuer: 'letsencrypt-prod-nginx-two' # 生成 https 的证书
+  labels:
+    app: ${project}-${branch} #变量
+  name: ${project}-${branch} #变量
+  namespace: ${myNamespace}
+spec:
+  ingressClassName: nginx-two
+  tls:
+    - hosts:
+        - ${branch}.${project}.ceba.ceshiren.com #变量
+      secretName: ${project}-${branch}
+  rules:
+    - host: ${branch}.${project}.ceba.ceshiren.com #变量
+      http:
+        paths:
+          - backend:
+              service:
+                name: ${project}-${branch} #变量
+                port:
+                  number: 5000
+            path: /
+            pathType: ImplementationSpecific
