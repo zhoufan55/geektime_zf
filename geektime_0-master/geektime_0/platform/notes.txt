@@ -1,0 +1,33 @@
+import-jenkins配置
+1、配置变量:git
+2、获取git地址：$git
+3、执行shell：
+    [ -d venv ] || python -m venv venv
+    . venv/bin/activate
+    pip3 install -r requirements.txt
+
+
+    pytest --co
+
+
+测试用例收集：
+    pytest hook：文档
+        https://docs.pytest.org/en/7.1.x/how-to/writing_hook_functions.html
+        收集用例：pytest_collection_modifyitems()
+    hook执行顺序：
+        https://ceshiren.com/t/topic/8807
+
+
+收集之后，上传
+    接口请求
+
+run-jenkins配置：
+    1、配置变量：testcase
+    1、配置变量:git
+    2、获取git地址：$git
+    3、执行shell：
+        [ -d venv ] || python -m venv venv
+        . venv/bin/activate
+        pip3 install -r requirements.txt
+
+        pytest --juinxml juint.xml --alluredir  allure-results "$testcase"
