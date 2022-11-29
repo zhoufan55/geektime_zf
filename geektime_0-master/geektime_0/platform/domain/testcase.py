@@ -12,7 +12,7 @@ class TestCase(db.Model):
     # nodeid
     id: int = db.Column(db.Integer, primary_key=True)
     name: str = db.Column(db.String(500), unique=True, nullable=False)
-    tasks: list[Task] = db.relationship("Task", back_populates="testcase")
+    tasks: Task = db.relationship("Task", back_populates="testcase")
     data: str = db.Column(db.String(1000))
     # data = db.Column(db.String(1000))  数据驱动 在线编辑 没有版本管理
     # nodeid =  db.Column(db.String(100))  通用大部分测试框架 用例编号与用例的定义解耦，可以充分的使用git
