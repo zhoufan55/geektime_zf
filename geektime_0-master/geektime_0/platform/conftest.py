@@ -13,7 +13,8 @@ def pytest_collection_modifyitems(config, items):
     # log.debug(items)
     testcase_list = []
 
-    cache = set()
+    cache = set()  # 集合 去重使用
+    # 每个层级 py文件，class层级，方法，三个层级拆出，可单独执行用例，测试套件 :: 拆分拼接
     for item in items:
         testcase = {'name': item.nodeid, 'data': None}
         testcase_list.append(testcase)

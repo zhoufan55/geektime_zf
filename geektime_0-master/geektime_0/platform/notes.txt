@@ -30,4 +30,18 @@ run-jenkins配置：
         . venv/bin/activate
         pip3 install -r requirements.txt
 
-        pytest --juinxml juint.xml --alluredir  allure-results "$testcase"
+        pytest --junitxml junit.xml --alluredir  allure-results "$testcase"
+
+
+
+[ -d venv ] || python3 -m venv venv
+. venv/bin/activate
+cd geektime_0-master
+pip3 install -r requirements.txt
+cd geektime_0/platform
+pytest --junitxml junit.xml --alluredir  allure-results "$testcase"
+curl --location --request POST http://192.168.1.14:5001/task/$taskid --header 'Content-Type: application/json' --data-raw "{\"name\":\"$BUILD_URL/allure/\"}"
+
+
+图表：
+echart

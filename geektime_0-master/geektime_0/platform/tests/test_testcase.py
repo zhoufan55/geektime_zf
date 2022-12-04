@@ -4,7 +4,7 @@ from geektime_0.app.wework.utils.log import log
 from geektime_0.platform.app import app
 from geektime_0.platform.db import db
 
-target = 'http://127.0.0.1:5000'
+target = 'http://192.168.1.14:5001'
 
 
 def test_testcase():

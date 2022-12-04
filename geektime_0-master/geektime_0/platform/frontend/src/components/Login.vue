@@ -67,14 +67,14 @@ export default {
   name: "LoginForm",
   data() {
     return {
-      username: "u1",
-      password: "p1",
+      username: "test_zhoufan",
+      password: "test_zhoufan",
     };
   },
   methods: {
     async login() {
       console.log(this.username + this.password);
-      const res = await http.post("/login.json", {
+      const res = await http.post("/login", {
         username: this.username,
         password: this.password,
       });

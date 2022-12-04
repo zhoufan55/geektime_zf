@@ -22,7 +22,7 @@ def login_html():
     return render_template('login.html', args=request.args)
 
 
-@auth_bp.route('/login.json', methods=['POST', 'GET'])
+@auth_bp.route('/login', methods=['POST', 'GET'])
 def login():
     data = request.args or request.json
     user = User(**data)
@@ -38,7 +38,7 @@ def login():
         return jsonify(errcode=1, msg=f'no such {user}')
 
 
-@auth_bp.route('/profile.json', methods=['POST', 'GET'])
+@auth_bp.route('/profile', methods=['POST', 'GET'])
 @jwt_required()
 def profile():
     username = get_jwt_identity()

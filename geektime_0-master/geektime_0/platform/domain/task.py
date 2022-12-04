@@ -3,7 +3,6 @@ from dataclasses import dataclass
 from geektime_0.platform.db import db
 
 
-
 @dataclass
 class Task(db.Model):
     id: int = db.Column(db.Integer, primary_key=True)

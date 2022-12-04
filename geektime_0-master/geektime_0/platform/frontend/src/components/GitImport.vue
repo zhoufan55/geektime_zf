@@ -19,7 +19,7 @@ export default {
   name: "GitImport",
   data() {
     return {
-      url: "https://gitlab.stuq.ceshiren.com/seveniruby/geektime_0.git",
+      url: "https://github.com/zhoufan55/geektime_zf.git",
     };
   },
   methods: {

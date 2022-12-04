@@ -68,5 +68,5 @@ def task_id_post(tid):
     db.session.add(task)
     db.session.commit()
     return {
-        'errcode': 0,
+        'errcode': 0
     }
