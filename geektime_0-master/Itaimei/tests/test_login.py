@@ -4,6 +4,9 @@
 # @Email : 13952047994@163.com
 # @File : test_login.py
 # @Project : geektime_zf_UI
+import pytest
+
+from Itaimei.page.sign import Sign
 
 
 class TestLogin(object):
@@ -11,4 +14,21 @@ class TestLogin(object):
         """
         初始化浏览器
         """
-        self.login = Login()
+        self.sign = Sign()
+        self.sign.open()
+
+    def setup(self):
+        ...
+        # self.sign.workbench()
+
+    def teardown(self):
+        self.sign.toPortal()
+
+    def teardown_class(self):
+        ...
+        # self.sign.signout()
+
+    @pytest.mark.parametrize(["username", "password"], [["zhoufan", "Zhou@123456"]])
+    def test_signin(self, username, password):
+        self.sign.signin(username, password)
+        assert "我的工作台" in self.sign.assert_ele()
