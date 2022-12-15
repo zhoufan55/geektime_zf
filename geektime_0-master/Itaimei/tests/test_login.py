@@ -16,19 +16,19 @@ class TestLogin(object):
         """
         self.sign = Sign()
         self.sign.open()
+        self.sign.clearInput()
 
     def setup(self):
-        ...
-        # self.sign.workbench()
+        self.sign.clearInput()
 
     def teardown(self):
-        self.sign.toPortal()
+        ...
 
     def teardown_class(self):
-        ...
-        # self.sign.signout()
+        self.sign.toPortal()
+        self.sign.signout()
 
-    @pytest.mark.parametrize(["username", "password"], [["zhoufan", "Zhou@123456"]])
+    @pytest.mark.parametrize('username,password', [('zhoufan55', 'Zhou@1234')])
     def test_signin(self, username, password):
         self.sign.signin(username, password)
         assert "我的工作台" in self.sign.assert_ele()

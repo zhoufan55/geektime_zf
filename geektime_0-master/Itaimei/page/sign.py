@@ -24,34 +24,63 @@ class Sign(object):
 
     def open(self):
         self.driver.maximize_window()
-        self.driver.get('http://trialos.test.com/login/')
-
-    def workbench(self):
-        self.driver.find_element(By.CLASS_NAME, 'workbench-item').click()
+        # 测试环境
+        # self.driver.get('https://uat.trialos.com.cn/login/')
+        # uat环境
+        self.driver.get('https://uat.trialos.com.cn/login/')
 
     def signin(self, username, password):
         WebDriverWait(self.driver, 10).until(
             expected_conditions.visibility_of_element_located((By.ID, 'username')))
+        js_user = 'document.querySelector("#username").value="";'
+        self.driver.execute_script(js_user)
+        js = 'document.querySelector("#password").value="";'
+        self.driver.execute_script(js)
         self.driver.find_element(By.ID, 'username').send_keys(username)
         self.driver.find_element(By.ID, 'password').send_keys(password)
         self.driver.find_element(By.CSS_SELECTOR, '[type="submit"]').click()
 
-    # def signout(self):
-    #     WebDriverWait(self.driver, 10).until(
-    #         expected_conditions.visibility_of_element_located((By.CSS_SELECTOR, '[alt="退出"]')))
-    #     self.driver.find_element(By.CSS_SELECTOR, '[alt="退出"]').click()
+    def signout(self):
+        WebDriverWait(self.driver, 10).until(
+            expected_conditions.visibility_of_element_located(
+                (By.CSS_SELECTOR, ".itm-edc-gnav-headaction > div:nth-child(2) > div")))
+        self.driver.find_element(By.CSS_SELECTOR, ".itm-edc-gnav-headaction > div:nth-child(2) > div").click()
+        WebDriverWait(self.driver, 10).until(
+            expected_conditions.visibility_of_element_located((By.CSS_SELECTOR, "[aria-label='logout']")))
+        self.driver.find_element(By.CSS_SELECTOR, "[aria-label='logout']").click()
+
+    def clearInput(self):
+        WebDriverWait(self.driver, 10).until(
+            expected_conditions.visibility_of_element_located((By.ID, 'username')))
+        js_user = 'document.querySelector("#username").value="";'
+        # self.driver.find_element(By.ID, 'username').clear()
+        self.driver.execute_script(js_user)
+        time.sleep(2)
+        js = 'document.querySelector("#password").value="";'
+        # self.driver.find_element(By.ID, 'password').clear()
+        self.driver.execute_script(js)
 
     def assert_ele(self) -> str:
         WebDriverWait(self.driver, 10).until(
             expected_conditions.visibility_of_element_located((By.CLASS_NAME, 'workbench-company--name')))
         return self.driver.find_element(By.CLASS_NAME, 'workbench-company--name').text
 
-    def toPortal(self):
+    def toPortal(self) -> Portal:
         #
         # iframe
-        self.driver.switch_to.frame('workbench-iframe')
         WebDriverWait(self.driver, 10).until(
-                expected_conditions.visibility_of_element_located((By.CSS_SELECTOR, '#sortListBox > div:nth-child(3)')))
-        self.driver.find_element(By.CSS_SELECTOR, '#sortListBox > div:nth-child(3)').click()
+            expected_conditions.visibility_of_all_elements_located((By.NAME, 'workbench-iframe'))
+        )
+        self.driver.switch_to.frame('workbench-iframe')
+
+        # 测试环境
+        # WebDriverWait(self.driver, 10).until(
+        #     expected_conditions.visibility_of_element_located((By.CSS_SELECTOR, '#sortListBox > div:nth-child(3)')))
+        # self.driver.find_element(By.CSS_SELECTOR, '#sortListBox > div:nth-child(3)').click()
+
+        # uat环境
+        WebDriverWait(self.driver, 10).until(
+            expected_conditions.visibility_of_element_located((By.CSS_SELECTOR, '#sortListBox > div:nth-child(4)')))
+        self.driver.find_element(By.CSS_SELECTOR, '#sortListBox > div:nth-child(4)').click()
         portal = Portal(self.driver)
         return portal
