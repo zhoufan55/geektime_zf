@@ -12,15 +12,14 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.wait import WebDriverWait
 
+from Itaimei.framework.basepage import BasePage
 from Itaimei.page.portal import Portal
 
 
-class Sign(object):
-    def __init__(self):
+class Sign(BasePage):
+    def __init__(self, driver=None):
+        super().__init__(driver)
         # 浏览器复用 绕过登录或是扫码，之后若是使用浏览器，可换成cookie复用
-        option = Options()
-        option.debugger_address = '127.0.0.1:9222'
-        self.driver = webdriver.Chrome("/Users/zhoufan/Desktop/zff/chromedriver", options=option)
 
     def open(self):
         self.driver.maximize_window()

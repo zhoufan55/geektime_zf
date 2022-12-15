@@ -4,12 +4,11 @@
 # @Email : 13952047994@163.com
 # @File : portal.py
 # @Project : geektime_0-master
-from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.chrome.webdriver import WebDriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.wait import WebDriverWait
-
+from Itaimei.framework.basepage import BasePage
 from Itaimei.page.coder import Coder
 from Itaimei.page.configuration import Configturation
 from Itaimei.page.datacollection import DataCollection
@@ -20,7 +19,7 @@ from Itaimei.page.report import Report
 
 
 class Portal(object):
-    def __init__(self, driver):
+    def __init__(self, driver: WebDriver):
         self.driver = driver
         WebDriverWait(self.driver, 10).until(
             expected_conditions.visibility_of_element_located((By.CSS_SELECTOR, '[role="menu"] > li:nth-child(1)')))
