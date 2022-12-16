@@ -11,8 +11,8 @@ class BasePage:
             self.driver = driver
         else:
             options = Options()
-            options.debugger_address = '127.0.0.1:9222'
-            self.driver = webdriver.Chrome(options=options)
+            options.debugger_address= '127.0.0.1:9222'
+            self.driver = webdriver.Chrome(options=options )
 
     def click(self, by, value):
         # todo: 异常处理
