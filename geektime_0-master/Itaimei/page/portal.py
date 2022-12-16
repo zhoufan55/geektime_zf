@@ -4,6 +4,8 @@
 # @Email : 13952047994@163.com
 # @File : portal.py
 # @Project : geektime_0-master
+import logging
+
 from selenium.webdriver.chrome.webdriver import WebDriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions
@@ -30,6 +32,9 @@ class Portal(BasePage):
         self.report = self.driver.find_element(By.CSS_SELECTOR, '[role="menu"] > li:nth-child(5)')
         self.export = self.driver.find_element(By.CSS_SELECTOR, '[role="menu"] > li:nth-child(6)')
         self.coder = self.driver.find_element(By.CSS_SELECTOR, '[role="menu"] > li:nth-child(7)')
+        # self.driver.find_elements(By.CSS_SELECTOR, '[role="menu"] > li')
+        print(len(self.driver.find_elements(By.CSS_SELECTOR, '[role="menu"] > li')))
+        logging.info(len(self.driver.find_elements(By.CSS_SELECTOR, '[role="menu"] > li')))
 
     def lang(self):
         WebDriverWait(self.driver, 10).until(

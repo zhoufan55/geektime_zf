@@ -31,7 +31,7 @@ class TestPortal(object):
     def test_portal(self):
         self.topor.Infras()
         self.topor.search("测试测试zff")
-        self.topor.lang()
+        # self.topor.lang()
 
         # self.topor.DataColl()
         #
