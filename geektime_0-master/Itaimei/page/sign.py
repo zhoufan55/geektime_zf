@@ -19,14 +19,13 @@ from Itaimei.page.portal import Portal
 class Sign(BasePage):
     def __init__(self, driver=None):
         super().__init__(driver)
-        # 浏览器复用 绕过登录或是扫码，之后若是使用浏览器，可换成cookie复用
 
     def open(self):
         self.driver.maximize_window()
         # 测试环境
-        # self.driver.get('https://uat.trialos.com.cn/login/')
+        self.driver.get('http://trialos.test.com/login/')
         # uat环境
-        self.driver.get('https://uat.trialos.com.cn/login/')
+        # self.driver.get('https://uat.trialos.com.cn/login/')
 
     def signin(self, username, password):
         WebDriverWait(self.driver, 10).until(
@@ -64,7 +63,7 @@ class Sign(BasePage):
             expected_conditions.visibility_of_element_located((By.CLASS_NAME, 'workbench-company--name')))
         return self.driver.find_element(By.CLASS_NAME, 'workbench-company--name').text
 
-    def toPortal(self) -> Portal:
+    def toPortal(self, box_num) -> Portal:
         #
         # iframe
         WebDriverWait(self.driver, 10).until(
@@ -72,14 +71,10 @@ class Sign(BasePage):
         )
         self.driver.switch_to.frame('workbench-iframe')
 
-        # 测试环境
-        # WebDriverWait(self.driver, 10).until(
-        #     expected_conditions.visibility_of_element_located((By.CSS_SELECTOR, '#sortListBox > div:nth-child(3)')))
-        # self.driver.find_element(By.CSS_SELECTOR, '#sortListBox > div:nth-child(3)').click()
-
-        # uat环境
+        box_num_ele = '#sortListBox > div:nth-child(%d)' % box_num
         WebDriverWait(self.driver, 10).until(
-            expected_conditions.visibility_of_element_located((By.CSS_SELECTOR, '#sortListBox > div:nth-child(4)')))
-        self.driver.find_element(By.CSS_SELECTOR, '#sortListBox > div:nth-child(4)').click()
+            expected_conditions.visibility_of_element_located((By.CSS_SELECTOR, box_num_ele)))
+        self.driver.find_element(By.CSS_SELECTOR, box_num_ele).click()
+
         portal = Portal(self.driver)
         return portal

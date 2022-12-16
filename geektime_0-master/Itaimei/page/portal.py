@@ -18,9 +18,9 @@ from Itaimei.page.lab import Lab
 from Itaimei.page.report import Report
 
 
-class Portal(object):
+class Portal(BasePage):
     def __init__(self, driver: WebDriver):
-        self.driver = driver
+        super().__init__(driver)
         WebDriverWait(self.driver, 10).until(
             expected_conditions.visibility_of_element_located((By.CSS_SELECTOR, '[role="menu"] > li:nth-child(1)')))
         self.ins_ele = self.driver.find_element(By.CSS_SELECTOR, '[role="menu"] > li:nth-child(1)')
@@ -31,12 +31,28 @@ class Portal(object):
         self.export = self.driver.find_element(By.CSS_SELECTOR, '[role="menu"] > li:nth-child(6)')
         self.coder = self.driver.find_element(By.CSS_SELECTOR, '[role="menu"] > li:nth-child(7)')
 
+    def lang(self):
+        WebDriverWait(self.driver, 10).until(
+            expected_conditions.visibility_of_element_located(
+                (By.CSS_SELECTOR, ".itm-edc-gnav-headaction > div:nth-child(1) > div")))
+        self.driver.find_element(By.CSS_SELECTOR, ".itm-edc-gnav-headaction > div:nth-child(1) > div").click()
+        WebDriverWait(self.driver, 10).until(expected_conditions.visibility_of_element_located(
+            (By.CSS_SELECTOR, '.edc-dropdown-menu-light > li:nth:child(2)')))
+        self.driver.find_element(By.CSS_SELECTOR, '.edc-dropdown-menu-light > li:nth:child(2)').click()
+
+    def search(self, keyword):
+        self.driver.find_element(By.CLASS_NAME, 'edc-input').send_keys(keyword)
+        self.driver.find_element(By.CLASS_NAME, 'edc-input-search-button').click()
+
+    def view(self):
+        ...
+
     def Infras(self):
         self.ins_ele.click()
         ins = Infrastructure(self.driver)
         return ins
 
-    def eCRFDesignList(self):
+    def eCRFDesignList_First(self):
         ...
 
     def DataColl(self):
@@ -44,7 +60,7 @@ class Portal(object):
         dac = DataCollection(self.driver)
         return dac
 
-    def EcollectList(self):
+    def EcollectList_First(self):
         ...
 
     def Confi(self):
@@ -52,7 +68,7 @@ class Portal(object):
         conf = Configturation(self.driver)
         return conf
 
-    def SettingsList(self):
+    def SettingsList_First(self):
         ...
 
     def Lab(self):
@@ -60,7 +76,7 @@ class Portal(object):
         lab = Lab(self.driver)
         return lab
 
-    def LabList(self):
+    def LabList_First(self):
         ...
 
     def Report(self):
@@ -68,7 +84,7 @@ class Portal(object):
         report = Report(self.driver)
         return report
 
-    def ReportList(self):
+    def ReportList_First(self):
         ...
 
     def Data_Export(self):
@@ -76,7 +92,7 @@ class Portal(object):
         daex = DataExport(self.driver)
         return daex
 
-    def ExportList(self):
+    def ExportList_First(self):
         ...
 
     def Coder(self):
@@ -84,5 +100,5 @@ class Portal(object):
         coder = Coder(self.driver)
         return coder
 
-    def CoderList(self):
+    def CoderList_First(self):
         ...
