@@ -15,8 +15,8 @@ class TestPortal(object):
         """
         self.sign = Sign()
         self.sign.open()
-        self.sign.signin("zhoufan5555", "Zhou@123")
-        self.topor = self.sign.toPortal(1)
+        self.sign.signin("zhoufan55", "Zhou@1234")
+        self.topor = self.sign.toPortal(4)
 
     def setup(self):
         ...
@@ -30,10 +30,11 @@ class TestPortal(object):
 
     def test_portal(self):
         self.topor.Infras()
-        self.topor.search("测试测试zff")
+        # self.topor.search("测试测试zff")
+        # self.topor.search("code")
         # self.topor.lang()
 
-        # self.topor.DataColl()
+        self.topor.DataColl()
         #
         # self.topor.Confi()
         #

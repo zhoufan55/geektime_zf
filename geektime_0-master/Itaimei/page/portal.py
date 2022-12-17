@@ -23,87 +23,109 @@ from Itaimei.page.report import Report
 class Portal(BasePage):
     def __init__(self, driver: WebDriver):
         super().__init__(driver)
-        WebDriverWait(self.driver, 10).until(
-            expected_conditions.visibility_of_element_located((By.CSS_SELECTOR, '[role="menu"] > li:nth-child(1)')))
-        self.ins_ele = self.driver.find_element(By.CSS_SELECTOR, '[role="menu"] > li:nth-child(1)')
-        self.ecoll = self.driver.find_element(By.CSS_SELECTOR, '[role="menu"] > li:nth-child(2)')
-        self.settings = self.driver.find_element(By.CSS_SELECTOR, '[role="menu"] > li:nth-child(3)')
-        self.lab = self.driver.find_element(By.CSS_SELECTOR, '[role="menu"] > li:nth-child(4)')
-        self.report = self.driver.find_element(By.CSS_SELECTOR, '[role="menu"] > li:nth-child(5)')
-        self.export = self.driver.find_element(By.CSS_SELECTOR, '[role="menu"] > li:nth-child(6)')
-        self.coder = self.driver.find_element(By.CSS_SELECTOR, '[role="menu"] > li:nth-child(7)')
-        # self.driver.find_elements(By.CSS_SELECTOR, '[role="menu"] > li')
-        print(len(self.driver.find_elements(By.CSS_SELECTOR, '[role="menu"] > li')))
-        logging.info(len(self.driver.find_elements(By.CSS_SELECTOR, '[role="menu"] > li')))
+        self.wait(By.CSS_SELECTOR, '[role="menu"] > li:nth-child(1)')
+        # 获取左边菜单个数，循环取出，放入列表porElements，以供读取适用
+        self.porElements = []
+        num = len(self.findElements(By.CSS_SELECTOR, '[role="menu"] > li'))
+        logging.info(num)
+        print(num)
+        for i in range(1, num + 1):
+            ele = self.findElement(By.CSS_SELECTOR, '[role="menu"] > li:nth-child(%d)' % i)
+            self.porElements.append(ele)
 
     def lang(self):
-        WebDriverWait(self.driver, 10).until(
-            expected_conditions.visibility_of_element_located(
-                (By.CSS_SELECTOR, ".itm-edc-gnav-headaction > div:nth-child(1) > div")))
-        self.driver.find_element(By.CSS_SELECTOR, ".itm-edc-gnav-headaction > div:nth-child(1) > div").click()
-        WebDriverWait(self.driver, 10).until(expected_conditions.visibility_of_element_located(
-            (By.CSS_SELECTOR, '.edc-dropdown-menu-light > li:nth:child(2)')))
-        self.driver.find_element(By.CSS_SELECTOR, '.edc-dropdown-menu-light > li:nth:child(2)').click()
+        """
+        切换语言环境
+        """
+        self.click(By.CSS_SELECTOR, ".itm-edc-gnav-headaction > div:nth-child(1) > div")
+        self.click(By.CSS_SELECTOR, '.edc-dropdown-menu-light > li:nth:child(2)')
 
     def search(self, keyword):
-        self.driver.find_element(By.CLASS_NAME, 'edc-input').send_keys(keyword)
-        self.driver.find_element(By.CLASS_NAME, 'edc-input-search-button').click()
+        """
+        portal搜索功能
+        """
+        self.findElement(By.CLASS_NAME, 'edc-input').send_keys(keyword)
+        self.click(By.CLASS_NAME, 'edc-input-search-button')
 
     def view(self):
         ...
 
-    def Infras(self):
-        self.ins_ele.click()
+    def Infras(self) -> Infrastructure:
+        """
+        crf构建
+        """
+        self.porElements[0].click()
         ins = Infrastructure(self.driver)
         return ins
 
     def eCRFDesignList_First(self):
         ...
 
-    def DataColl(self):
-        self.ecoll.click()
+    def DataColl(self) -> DataCollection:
+        """
+        数据采集driver
+        """
+        self.porElements[1].click()
         dac = DataCollection(self.driver)
         return dac
 
     def EcollectList_First(self):
         ...
 
-    def Confi(self):
-        self.settings.click()
+    def Confi(self) -> Configturation:
+        """
+        配置configuration   driver
+        """
+        self.porElements[3].click()
         conf = Configturation(self.driver)
         return conf
 
     def SettingsList_First(self):
         ...
 
-    def Lab(self):
-        self.lab.click()
+    def Lab(self) -> Lab:
+        """
+        实验室driver
+        """
+        self.porElements[4].click()
         lab = Lab(self.driver)
         return lab
 
     def LabList_First(self):
         ...
 
-    def Report(self):
-        self.report.click()
+    def Report(self) -> Report:
+        """
+        报表driver
+        """
+        self.porElements[5].click()
         report = Report(self.driver)
         return report
 
     def ReportList_First(self):
         ...
 
-    def Data_Export(self):
-        self.export.click()
+    def Data_Export(self) -> DataExport:
+        """
+        数据导出driver
+        """
+        self.porElements[6].click()
         daex = DataExport(self.driver)
         return daex
 
     def ExportList_First(self):
         ...
 
-    def Coder(self):
-        self.coder.click()
+    def Coder(self) -> Coder:
+        """
+        编码driver
+        """
+        self.porElements[7].click()
         coder = Coder(self.driver)
         return coder
 
     def CoderList_First(self):
+        """
+        编码列表
+        """
         ...
