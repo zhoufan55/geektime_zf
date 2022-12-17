@@ -25,13 +25,12 @@ class BasePage(object):
             expected_conditions.visibility_of_all_elements_located((by, element))
         )
 
-    def findElement(self, by, element):
+    def findElement(self, by, element, seconds=10):
+        self.wait(by, element, seconds)
         return self.driver.find_element(by, element)
 
     def findElements(self, by, element, seconds=10):
-        WebDriverWait(self.driver, seconds).until(
-            expected_conditions.visibility_of_all_elements_located((by, element))
-        )
+        self.wait(by, element, seconds)
         return self.driver.find_elements(by, element)
 
     def click(self, by, element):
