@@ -73,12 +73,11 @@ class Owners:
         #     f'https://spring-petclinic-rest.k8s.hogwarts.ceshiren.com/petclinic/api/owners/{owner_id}',
         # )
         #
-        request=Request()
-        request.method='delete'
-        request.host='https://spring-petclinic-rest.k8s.hogwarts.ceshiren.com'
-        request.path=f'/petclinic/api/owners/{owner_id}'
-        r=request.send()
-
+        request = Request()
+        request.method = 'delete'
+        request.host = 'https://spring-petclinic-rest.k8s.hogwarts.ceshiren.com'
+        request.path = f'/petclinic/api/owners/{owner_id}'
+        r = request.send()
 
         log.debug(r)
         log.debug(r.text)

@@ -4,8 +4,7 @@
 # @Email : 13952047994@163.com
 # @File : test_ins.py
 # @Project : geektime_0-master
-from Itaimei.page.portal import Portal
-from Itaimei.page.sign import Sign
+from Itaimei_ui.page.sign import Sign
 
 
 class TestIns(object):
@@ -13,7 +12,10 @@ class TestIns(object):
         """
         初始化浏览器
         """
-        ...
+        self.sign = Sign()
+        self.sign.open()
+        self.sign.signin("zhoufan55", "Zhou@1234")
+        self.toInfras = self.sign.toPortal(4).Infras()
 
     def setup(self):
         ...

@@ -6,7 +6,7 @@
 # @Project : geektime_zf_UI
 import pytest
 
-from Itaimei.page.sign import Sign
+from Itaimei_ui.page.sign import Sign
 
 
 class TestLogin(object):

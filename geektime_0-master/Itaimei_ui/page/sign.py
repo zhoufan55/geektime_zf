@@ -4,16 +4,9 @@
 # @Email : 13952047994@163.com
 # @File : sign.py
 # @Project : geektime_zf_UI
-import time
-
-from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support import expected_conditions
-from selenium.webdriver.support.wait import WebDriverWait
-
-from Itaimei.framework.basepage import BasePage
-from Itaimei.page.portal import Portal
+from Itaimei_ui.framework.basepage import BasePage
+from Itaimei_ui.page.portal import Portal
 
 
 class Sign(BasePage):
@@ -43,7 +36,9 @@ class Sign(BasePage):
         """
         退出登录
         """
-        self.click(By.CSS_SELECTOR, ".itm-edc-gnav-headaction > div:nth-child(2) > div")
+        num = len(self.findElements(By.CSS_SELECTOR, ".itm-edc-gnav-headaction > div"))
+        print(num)
+        self.click(By.CSS_SELECTOR, '.itm-edc-gnav-headaction > div:nth-child(%d) > div' % num)
         self.click(By.CSS_SELECTOR, "[aria-label='logout']")
 
     def clearInput(self):

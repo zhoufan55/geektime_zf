@@ -5,7 +5,7 @@
 # @File : test_portal.py
 # @Project : geektime_0-master
 import time
-from Itaimei.page.sign import Sign
+from Itaimei_ui.page.sign import Sign
 
 
 class TestPortal(object):
@@ -33,7 +33,6 @@ class TestPortal(object):
         # self.topor.search("测试测试zff")
         # self.topor.search("code")
         # self.topor.lang()
-
         self.topor.DataColl()
         #
         # self.topor.Confi()
@@ -46,3 +45,6 @@ class TestPortal(object):
         #
         # self.topor.Coder()
         time.sleep(5)
+
+    def test_portal_crf(self):
+        self.topor.eCRFDesignList_First()
