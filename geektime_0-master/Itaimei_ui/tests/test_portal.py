@@ -15,8 +15,8 @@ class TestPortal(object):
         """
         self.sign = Sign()
         self.sign.open()
-        self.sign.signin("zhoufan55", "Zhou@1234")
-        self.topor = self.sign.toPortal(4)
+        self.sign.signin("zhoufan5555", "Zhou@123")
+        self.topor = self.sign.toPortal(1)
 
     def setup(self):
         ...

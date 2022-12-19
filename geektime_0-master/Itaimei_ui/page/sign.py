@@ -16,9 +16,9 @@ class Sign(BasePage):
     def open(self):
         self.driver.maximize_window()
         # 测试环境
-        # self.driver.get('http://trialos.test.com/login/')
+        self.driver.get('http://trialos.test.com/login/')
         # uat环境
-        self.driver.get('https://uat.trialos.com.cn/login/')
+        # self.driver.get('https://uat.trialos.com.cn/login/')
 
     def signin(self, username, password):
         """

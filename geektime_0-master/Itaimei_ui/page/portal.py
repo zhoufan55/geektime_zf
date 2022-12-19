@@ -53,6 +53,9 @@ class Portal(BasePage):
         crf构建
         """
         self.porElements[0].click()
+        self.wait(By.CSS_SELECTOR, '.crf-list__container > div:nth-child(2) > div')
+        self.click(By.CSS_SELECTOR,
+                   '.crf-list__container > div:nth-child(2) > div:nth-child(1)')
         ins = Infrastructure(self.driver)
         return ins
 

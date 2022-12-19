@@ -18,7 +18,8 @@ class BasePage(object):
         else:
             option = Options()
             option.debugger_address = '127.0.0.1:9222'
-            self.driver = webdriver.Chrome("/Users/a404/chromedriver", options=option)
+            # self.driver = webdriver.Chrome("/Users/a404/chromedriver", options=option)
+            self.driver = webdriver.Chrome("/Users/zhoufan/Desktop/zff/chromedriver", options=option)
 
     def wait(self, by, element, seconds=10):
         return WebDriverWait(self.driver, seconds).until(

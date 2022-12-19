@@ -14,8 +14,8 @@ class TestIns(object):
         """
         self.sign = Sign()
         self.sign.open()
-        self.sign.signin("zhoufan55", "Zhou@1234")
-        self.toInfras = self.sign.toPortal(4).Infras()
+        self.sign.signin("zhoufan5555", "Zhou@123")
+        self.toInfras = self.sign.toPortal(1).Infras()
 
     def setup(self):
         ...
@@ -27,4 +27,5 @@ class TestIns(object):
         ...
 
     def test_ins(self):
-        ...
+        self.toInfras.draftManagement()
+        self.toInfras.back()
