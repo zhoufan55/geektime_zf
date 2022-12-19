@@ -4,6 +4,7 @@
 # @Email : 13952047994@163.com
 # @File : report.py
 # @Project : geektime_0-master
+from selenium.webdriver import ActionChains
 from selenium.webdriver.common.by import By
 
 from Itaimei_ui.framework.basepage import BasePage
@@ -19,10 +20,14 @@ class Infrastructure(BasePage):
         self.wait(By.CSS_SELECTOR, '.menu___1g4__ > div:nth-child(1) > div:nth-child(1)')
         eles = len(self.findElements(By.CSS_SELECTOR, '.menu___1g4__ > div:nth-child(1) > div'))
         print(eles)
+        hover_ele = self.findElement(By.CSS_SELECTOR, '.menu___1g4__ > div:nth-child(1) > div:nth-child(1)')
+        self.action_move(hover_ele)
         self.click(By.CSS_SELECTOR, '.menu___1g4__ > div:nth-child(1) > div:nth-child(1)')
 
     def siteDatabaseVersion(self):
         ...
 
     def back(self):
+        hover_ele = self.findElement(By.CLASS_NAME, 'back___Ras7T')
+        self.action_move(hover_ele)
         self.click(By.CLASS_NAME, 'back___Ras7T')

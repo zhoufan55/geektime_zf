@@ -24,7 +24,8 @@ class TestIns(object):
         ...
 
     def teardown_class(self):
-        ...
+        self.sign.signout()
+        self.sign.clearInput()
 
     def test_ins(self):
         self.toInfras.draftManagement()

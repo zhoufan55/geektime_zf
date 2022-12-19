@@ -5,6 +5,7 @@
 # @File : basepage.py
 # @Project : geektime_0-master
 from selenium import webdriver
+from selenium.webdriver import ActionChains
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.webdriver import WebDriver
 from selenium.webdriver.support import expected_conditions
@@ -37,6 +38,9 @@ class BasePage(object):
 
     def click(self, by, element):
         return self.findElement(by, element).click()
+
+    def action_move(self, ele):
+        return ActionChains(self.driver).move_to_element(ele).perform()
 
     def base_page(self):
         ...
