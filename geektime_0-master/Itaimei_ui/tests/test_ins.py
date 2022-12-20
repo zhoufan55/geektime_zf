@@ -24,9 +24,21 @@ class TestIns(object):
         ...
 
     def teardown_class(self):
-        self.sign.signout()
-        self.sign.clearInput()
+        # self.sign.signout()
+        # self.sign.clearInput()
+        ...
 
     def test_ins(self):
         self.toInfras.draftManagement()
+        self.toInfras.toPlan()
+        self.toInfras.back()
+        self.toInfras.toFormsets()
+        self.toInfras.back()
+        self.toInfras.toForms()
+        self.toInfras.back()
+        self.toInfras.toCodelists()
+        self.toInfras.back()
+        self.toInfras.toUnits()
+        self.toInfras.back()
+        self.toInfras.toAnalytes()
         self.toInfras.back()

@@ -4,11 +4,8 @@
 # @Email : 13952047994@163.com
 # @File : report.py
 # @Project : geektime_0-master
-from selenium.webdriver import ActionChains
 from selenium.webdriver.common.by import By
-
 from Itaimei_ui.framework.basepage import BasePage
-from Itaimei_ui.page.crfInternal.plan import Plans
 
 
 class Infrastructure(BasePage):
@@ -30,23 +27,31 @@ class Infrastructure(BasePage):
         hover_ele = self.findElement(By.CSS_SELECTOR, '.menu___1g4__ > div:nth-child(1) > div:nth-child(1)')
         self.action_move(hover_ele)
         self.click(By.CSS_SELECTOR, '.menu___1g4__ > div:nth-child(1) > div:nth-child(1)')
-        plans = Plans(self.driver)
-        return plans
 
     def toFormsets(self):
-        ...
+        hover_ele = self.findElement(By.CSS_SELECTOR, '.menu___1g4__ > div:nth-child(1) > div:nth-child(2)')
+        self.action_move(hover_ele)
+        self.click(By.CSS_SELECTOR, '.menu___1g4__ > div:nth-child(1) > div:nth-child(2)')
 
     def toForms(self):
-        ...
+        hover_ele = self.findElement(By.CSS_SELECTOR, '.menu___1g4__ > div:nth-child(1) > div:nth-child(3)')
+        self.action_move(hover_ele)
+        self.click(By.CSS_SELECTOR, '.menu___1g4__ > div:nth-child(1) > div:nth-child(3)')
 
     def toCodelists(self):
-        ...
+        hover_ele = self.findElement(By.CSS_SELECTOR, '.menu___1g4__ > div:nth-child(1) > div:nth-child(4)')
+        self.action_move(hover_ele)
+        self.click(By.CSS_SELECTOR, '.menu___1g4__ > div:nth-child(1) > div:nth-child(4)')
 
     def toUnits(self):
-        ...
+        hover_ele = self.findElement(By.CSS_SELECTOR, '.menu___1g4__ > div:nth-child(1) > div:nth-child(5)')
+        self.action_move(hover_ele)
+        self.click(By.CSS_SELECTOR, '.menu___1g4__ > div:nth-child(1) > div:nth-child(5)')
 
     def toAnalytes(self):
-        ...
+        hover_ele = self.findElement(By.CSS_SELECTOR, '.menu___1g4__ > div:nth-child(1) > div:nth-child(6)')
+        self.action_move(hover_ele)
+        self.click(By.CSS_SELECTOR, '.menu___1g4__ > div:nth-child(1) > div:nth-child(6)')
 
     def toEcrfAccess(self):
         ...
