@@ -36,9 +36,9 @@ class Sign(BasePage):
         """
         退出登录
         """
+        self.wait(By.CSS_SELECTOR, ".itm-edc-gnav-headaction > div")
         num = len(self.findElements(By.CSS_SELECTOR, ".itm-edc-gnav-headaction > div"))
         print(num)
-        self.wait()
         self.click(By.CSS_SELECTOR, '.itm-edc-gnav-headaction > div:nth-child(%d) > div' % num)
         self.click(By.CSS_SELECTOR, "[aria-label='logout']")
 
