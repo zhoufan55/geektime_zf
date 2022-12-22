@@ -36,7 +36,7 @@ class Sign(BasePage):
         """
         退出登录
         """
-        self.wait(By.CSS_SELECTOR, ".itm-edc-gnav-headaction > div")
+        self.visi_wait(By.CSS_SELECTOR, ".itm-edc-gnav-headaction > div")
         num = len(self.findElements(By.CSS_SELECTOR, ".itm-edc-gnav-headaction > div"))
         print(num)
         self.click(By.CSS_SELECTOR, '.itm-edc-gnav-headaction > div:nth-child(%d) > div' % num)
@@ -46,7 +46,7 @@ class Sign(BasePage):
         """
         清空登录输入框中的文字
         """
-        self.wait(By.ID, 'username')
+        self.visi_wait(By.ID, 'username')
         js_user = 'document.querySelector("#username").value="";'
         self.driver.execute_script(js_user)
         js = 'document.querySelector("#password").value="";'
@@ -56,7 +56,7 @@ class Sign(BasePage):
         """
         断言：登录成功之后，出现"我的工作台"
         """
-        self.wait(By.CLASS_NAME, 'workbench-company--name')
+        self.visi_wait(By.CLASS_NAME, 'workbench-company--name')
         return self.findElement(By.CLASS_NAME, 'workbench-company--name').text
 
     def toPortal(self, box_num) -> Portal:
@@ -65,12 +65,12 @@ class Sign(BasePage):
         """
         #
         # iframe
-        self.wait(By.NAME, 'workbench-iframe')
+        self.visi_wait(By.NAME, 'workbench-iframe')
         self.driver.switch_to.frame('workbench-iframe')
 
         # 工作台中点击eCollect6,账号不一样可能位置不一样，传入第几个点击第几个
         box_num_ele = '#sortListBox > div:nth-child(%d)' % box_num
-        self.wait(By.CSS_SELECTOR, box_num_ele)
+        self.visi_wait(By.CSS_SELECTOR, box_num_ele)
         self.click(By.CSS_SELECTOR, box_num_ele)
         portal = Portal(self.driver)
         return portal

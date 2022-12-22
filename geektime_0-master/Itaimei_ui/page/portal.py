@@ -22,7 +22,7 @@ class Portal(BasePage):
     def __init__(self, driver: WebDriver):
         # 接受外部传入的driver，用于自己内部使用
         super().__init__(driver)
-        self.wait(By.CSS_SELECTOR, '[role="menu"] > li:nth-child(1)')
+        self.visi_wait(By.CSS_SELECTOR, '[role="menu"] > li:nth-child(1)')
         # 获取左边菜单个数，循环取出，放入列表porElements，以供读取适用
         self.porElements = []
         num = len(self.findElements(By.CSS_SELECTOR, '[role="menu"] > li'))
@@ -53,7 +53,7 @@ class Portal(BasePage):
         crf构建
         """
         self.porElements[0].click()
-        self.wait(By.CSS_SELECTOR, '.crf-list__container > div:nth-child(2) > div')
+        self.visi_wait(By.CSS_SELECTOR, '.crf-list__container > div:nth-child(2) > div')
         self.click(By.CSS_SELECTOR,
                    '.crf-list__container > div:nth-child(2) > div:nth-child(1)')
         ins = Infrastructure(self.driver)
@@ -61,7 +61,7 @@ class Portal(BasePage):
 
     def eCRFDesignList_First(self):
         self.porElements[0].click()
-        self.wait(By.CSS_SELECTOR, '.crf-list__container > div:nth-child(2) > div')
+        self.visi_wait(By.CSS_SELECTOR, '.crf-list__container > div:nth-child(2) > div')
         # 获取第一页项目数量
         projectEles = []
         pros = len(self.findElements(By.CSS_SELECTOR, '.crf-list__container > div:nth-child(2) > div'))

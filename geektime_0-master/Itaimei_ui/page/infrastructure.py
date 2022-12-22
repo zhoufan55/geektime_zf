@@ -16,12 +16,17 @@ class Infrastructure(BasePage):
         super().__init__(driver)
 
     def draftManagement(self):
-        self.wait(By.CSS_SELECTOR, '.edc-form-horizontal > div:nth-child(2)')
+        self.visi_wait(By.CSS_SELECTOR, '.edc-form-horizontal > div:nth-child(2)')
         self.click(By.CSS_SELECTOR, '.edc-form-horizontal > div:nth-child(2)')
-        self.wait(By.CSS_SELECTOR, '.menu___1g4__ > div:nth-child(1) > div:nth-child(1)')
+        self.visi_wait(By.CSS_SELECTOR, '.menu___1g4__ > div:nth-child(1) > div:nth-child(1)')
         eles1 = len(self.findElements(By.CSS_SELECTOR, '.menu___1g4__ > div:nth-child(1) > div'))
         eles2 = len(self.findElements(By.CSS_SELECTOR, '.menu___1g4__ > div:nth-child(2) > div'))
-        print(eles1, eles2)
+
+    def draft_num(self) -> int:
+        self.visi_wait(By.CSS_SELECTOR, '.edc-form-horizontal')
+        drafts = self.findElements(By.CSS_SELECTOR, '.edc-form-horizontal > div')
+        darft_nums = len(drafts)
+        return darft_nums
 
     def siteDatabaseVersion(self):
         ...
@@ -87,13 +92,13 @@ class Infrastructure(BasePage):
         self.click(By.CSS_SELECTOR, '.menu___1g4__ > div:nth-child(2) > div:nth-child(6)')
 
     def add_draft(self, draftName):
-        self.wait(By.CLASS_NAME, 'icon-edc-add')
+        self.visi_wait(By.CLASS_NAME, 'icon-edc-add')
         self.click(By.CLASS_NAME, 'icon-edc-add')
-        self.wait(By.CLASS_NAME, 'headerExtra___3fjDw')
+        self.visi_wait(By.CLASS_NAME, 'headerExtra___3fjDw')
         # eles = len(self.findElements(By.CSS_SELECTOR, '.headerExtra___3fjDw > li'))
         # Create Manually
         self.click(By.CSS_SELECTOR, '.list___3zSjf > li:nth-child(2)')
-        self.wait(By.ID, 'draftName')
+        self.visi_wait(By.ID, 'draftName')
         self.findElement(By.ID, 'draftName').send_keys(draftName)
         self.click(By.CSS_SELECTOR, '.edc-row-end > div > button')
         time.sleep(0.5)
@@ -102,25 +107,29 @@ class Infrastructure(BasePage):
         text = self.findElement(
             By.CSS_SELECTOR,
             '.wrap___2wsUC > .edc-form-horizontal > div:nth-child(1) > div > div:nth-child(1) > div:nth-child(2)').text
-        print(text)
+        logging.info(text)
         return text
 
     def delete_draft(self):
-        # self.wait(
-        #     By.CSS_SELECTOR,
-        #     '.wrap___2wsUC > .edc-form-horizontal > div:nth-child(1)')
-        ele = self.findElement(By.CSS_SELECTOR, '.wrap___2wsUC > .edc-form-horizontal > div:nth-child(1) > div')
-
+        # ele = self.findElement(By.CSS_SELECTOR,
+        #                        '.wrap___2wsUC > .edc-form-horizontal > div:nth-child(1) > div > div:nth-child(2)')
+        ele = self.findElement(By.CSS_SELECTOR,
+                               '.wrap___2wsUC > .edc-form-horizontal > div:nth-child(1) > div')
+        self.click(By.CSS_SELECTOR,
+                   '.wrap___2wsUC > .edc-form-horizontal > div:nth-child(1) > div')
+        self.action_move(ele)
+        nums = self.draft_num()
         ele1 = self.findElement(By.CSS_SELECTOR,
                                 '.wrap___2wsUC > .edc-form-horizontal > div:nth-child(1) > div > div:nth-child(2)')
-        self.action_move(ele)
-        self.wait(By.CSS_SELECTOR,
-                  '.wrap___2wsUC > .edc-form-horizontal > div:nth-child(1) > div > div:nth-child(2)')
         self.action_move(ele1)
-        print(self.findElements(By.CSS_SELECTOR,
-                                '.wrap___2wsUC > .edc-form-horizontal > div:nth-child(1) > div:nth-child(2)'))
-        return self.findElements(By.CSS_SELECTOR,
-                                 '.wrap___2wsUC > .edc-form-horizontal > div:nth-child(1) > div:nth-child(2)')
+        time.sleep(0.5)
+        ele2 = self.findElement_dy(By.CSS_SELECTOR,
+                                   'body > div:nth-child(%d) > div > div > ul > li:nth-child(2)' % (nums - 1))
+        self.action_move(ele2)
+        self.click(By.CSS_SELECTOR,
+                   'body > div:nth-child(%d) > div > div > ul > li:nth-child(2)' % (nums - 1))
+        self.findElement(By.CSS_SELECTOR, '.edc-modal-confirm-btns > button:nth-child(2)')
+        self.click(By.CSS_SELECTOR, '.edc-modal-confirm-btns > button:nth-child(2)')
 
     def back(self):
         hover_ele = self.findElement(By.CLASS_NAME, 'back___Ras7T')

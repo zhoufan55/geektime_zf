@@ -22,17 +22,26 @@ class BasePage(object):
             # self.driver = webdriver.Chrome("/Users/a404/chromedriver", options=option)
             self.driver = webdriver.Chrome("/Users/zhoufan/Desktop/zff/chromedriver", options=option)
 
-    def wait(self, by, element, seconds=10):
+    def presence_wait(self, by, element, seconds=10):
         return WebDriverWait(self.driver, seconds).until(
-            expected_conditions.visibility_of_all_elements_located((by, element))
+            expected_conditions.presence_of_element_located((by, element))
+        )
+
+    def visi_wait(self, by, element, seconds=10):
+        return WebDriverWait(self.driver, seconds).until(
+            expected_conditions.visibility_of_element_located((by, element))
         )
 
     def findElement(self, by, element):
-        self.wait(by, element)
+        self.visi_wait(by, element)
+        return self.driver.find_element(by, element)
+
+    def findElement_dy(self, by, element):
+        self.presence_wait(by, element)
         return self.driver.find_element(by, element)
 
     def findElements(self, by, element):
-        self.wait(by, element)
+        self.visi_wait(by, element)
         return self.driver.find_elements(by, element)
 
     def click(self, by, element):

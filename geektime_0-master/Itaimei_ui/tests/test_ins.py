@@ -4,6 +4,7 @@
 # @Email : 13952047994@163.com
 # @File : test_ins.py
 # @Project : geektime_0-master
+import time
 from logging import log, INFO
 import pytest
 from Itaimei_ui.page.sign import Sign
@@ -30,6 +31,7 @@ class TestIns(object):
         # self.sign.clearInput()
         ...
 
+    # @pytest.mark.skip
     @pytest.mark.parametrize("draftName", [["draftName1"], ["draftName2"]])
     def test_ins_add_draft(self, draftName):
         self.toInfras.add_draft(draftName)
@@ -39,6 +41,7 @@ class TestIns(object):
     def test_delete_draft(self):
         self.toInfras.delete_draft()
 
+    @pytest.mark.skip
     def test_ins(self):
         self.toInfras.draftManagement()
         self.toInfras.toPlan()
