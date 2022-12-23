@@ -25,8 +25,9 @@ class Infrastructure(BasePage):
     def draft_num(self) -> int:
         self.visi_wait(By.CSS_SELECTOR, '.edc-form-horizontal')
         drafts = self.findElements(By.CSS_SELECTOR, '.edc-form-horizontal > div')
-        darft_nums = len(drafts)
-        return darft_nums
+        draft_nums = len(drafts)
+        print(draft_nums)
+        return draft_nums
 
     def siteDatabaseVersion(self):
         ...
@@ -103,10 +104,11 @@ class Infrastructure(BasePage):
         self.click(By.CSS_SELECTOR, '.edc-row-end > div > button')
         time.sleep(0.5)
 
-    def assert_draft_name(self):
+    def assert_text(self):
         text = self.findElement(
             By.CSS_SELECTOR,
             '.wrap___2wsUC > .edc-form-horizontal > div:nth-child(1) > div > div:nth-child(1) > div:nth-child(2)').text
+
         logging.info(text)
         return text
 
@@ -119,15 +121,16 @@ class Infrastructure(BasePage):
                    '.wrap___2wsUC > .edc-form-horizontal > div:nth-child(1) > div')
         self.action_move(ele)
         nums = self.draft_num()
+        print(nums)
         ele1 = self.findElement(By.CSS_SELECTOR,
                                 '.wrap___2wsUC > .edc-form-horizontal > div:nth-child(1) > div > div:nth-child(2)')
         self.action_move(ele1)
         time.sleep(0.5)
         ele2 = self.findElement_dy(By.CSS_SELECTOR,
-                                   'body > div:nth-child(%d) > div > div > ul > li:nth-child(2)' % (nums - 1))
+                                   'body > div:nth-child(%d) > div > div > ul > li:nth-child(2)' % nums)
         self.action_move(ele2)
         self.click(By.CSS_SELECTOR,
-                   'body > div:nth-child(%d) > div > div > ul > li:nth-child(2)' % (nums - 1))
+                   'body > div:nth-child(%d) > div > div > ul > li:nth-child(2)' % nums)
         self.findElement(By.CSS_SELECTOR, '.edc-modal-confirm-btns > button:nth-child(2)')
         self.click(By.CSS_SELECTOR, '.edc-modal-confirm-btns > button:nth-child(2)')
 
