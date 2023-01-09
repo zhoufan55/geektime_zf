@@ -1,3 +1,9 @@
+# -*- coding: utf-8 -*-
+# @Time : 2023/1/5 15:57
+# @Author : zhoufan
+# @Email : 13952047994@163.com
+# @File : configtest.py
+# @Project : geektime_0-master
 from dataclasses import asdict
 from itamei_api.framework.http import Request
 from itamei_api.datacls.login_datacls import LoginDataCls, UserInfoCls
