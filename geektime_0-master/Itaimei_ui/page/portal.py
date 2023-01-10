@@ -5,7 +5,6 @@
 # @File : portal.py
 # @Project : geektime_0-master
 import logging
-
 from selenium.webdriver.chrome.webdriver import WebDriver
 from selenium.webdriver.common.by import By
 from Itaimei_ui.framework.basepage import BasePage
@@ -77,11 +76,13 @@ class Portal(BasePage):
         else:
             pass
 
-    def DataColl(self) -> DataCollection:
+    def DataColl(self, dataname) -> DataCollection:
         """
         数据采集driver
         """
         self.porElements[1].click()
+        self.visi_wait(By.CSS_SELECTOR, 'div[data-name=%s]' % dataname)
+        self.click(By.CSS_SELECTOR, 'div[data-name=%s]' % dataname)
         dac = DataCollection(self.driver)
         return dac
 

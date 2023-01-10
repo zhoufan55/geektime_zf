@@ -4,6 +4,8 @@
 # @Email : 13952047994@163.com
 # @File : sign.py
 # @Project : geektime_zf_UI
+import time
+
 from selenium.webdriver.common.by import By
 from Itaimei_ui.framework.basepage import BasePage
 from Itaimei_ui.page.portal import Portal
@@ -16,9 +18,9 @@ class Sign(BasePage):
     def open(self):
         self.driver.maximize_window()
         # 测试环境
-        self.driver.get('http://trialos.test.com/login/')
+        # self.driver.get('http://trialos.test.com/login/')
         # uat环境
-        # self.driver.get('https://uat.trialos.com.cn/login/')
+        self.driver.get('https://uat.trialos.com.cn/login/')
 
     def signin(self, username, password):
         """
@@ -46,11 +48,12 @@ class Sign(BasePage):
         """
         清空登录输入框中的文字
         """
+        time.sleep(0.5)
         self.visi_wait(By.ID, 'username')
         js_user = 'document.querySelector("#username").value="";'
         self.driver.execute_script(js_user)
-        js = 'document.querySelector("#password").value="";'
-        self.driver.execute_script(js)
+        js_pass = 'document.querySelector("#password").value="";'
+        self.driver.execute_script(js_pass)
 
     def assert_ele(self) -> str:
         """

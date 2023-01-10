@@ -4,7 +4,6 @@
 # @Email : 13952047994@163.com
 # @File : test_ins.py
 # @Project : geektime_0-master
-import time
 from logging import log, INFO
 import pytest
 from Itaimei_ui.page.sign import Sign
