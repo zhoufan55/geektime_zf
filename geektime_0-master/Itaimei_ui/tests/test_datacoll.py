@@ -33,3 +33,7 @@ class TestCollect(object):
 
     def test_entryform(self):
         self.toDataColl.entry_form()
+        self.toDataColl.entry_form_assert("编辑")
+
+    def test_updateStatus(self):
+        self.toDataColl.updateStatus_item_single()
