@@ -1,0 +1,96 @@
+{
+    "success": true,
+    "errors": null,
+    "data": {
+        "id": "8ac09e578474b919018478f4a4601125",
+        "tenantId": "schg",
+        "studyId": "8ac08df38451099d0184511e0b990b77",
+        "draftName": "1.6.1从项目导-mitm-test",
+        "subjectFormId": "8ac09e578474b919018478fdea4c24fc",
+        "subjectFormOid": "SUB",
+        "subjectFormName": "受试者表",
+        "defaultPlanName": "逻辑核查回归",
+        "defaultPlanOid": "P4",
+        "defaultPlanId": "8ac09e578474b919018478fdea5a26a9",
+        "trialProtocolId": null,
+        "isTemplate": 0,
+        "description": null,
+        "lc": [
+            {
+                "name": "StudyEvent",
+                "count": 13,
+                "updateTime": null,
+                "number": 1
+            },
+            {
+                "name": "CrfForm",
+                "count": 51,
+                "updateTime": null,
+                "number": 2
+            },
+            {
+                "name": "CodeList",
+                "count": 6,
+                "updateTime": null,
+                "number": 5
+            },
+            {
+                "name": "Analytes",
+                "count": 10,
+                "updateTime": null,
+                "number": 6
+            },
+            {
+                "name": "BaseUnitDicGroup",
+                "count": 6,
+                "updateTime": null,
+                "number": 7
+            },
+            {
+                "name": "EditCheck",
+                "count": 59,
+                "updateTime": null,
+                "number": 8
+            },
+            {
+                "name": "DerivationVariable",
+                "count": 1,
+                "updateTime": null,
+                "number": 9
+            },
+            {
+                "name": "eCRFAccessControl",
+                "count": null,
+                "updateTime": null,
+                "number": 10
+            },
+            {
+                "name": "Plan",
+                "count": 7,
+                "updateTime": null,
+                "number": 11
+            },
+            {
+                "name": "MappingConfig",
+                "count": 4,
+                "updateTime": null,
+                "number": 12
+            },
+            {
+                "name": "CustomizedFunctions",
+                "count": 3,
+                "updateTime": null,
+                "number": 13
+            },
+            {
+                "name": "CompletionGuidelines",
+                "count": 0,
+                "updateTime": null,
+                "number": 14
+            }
+        ],
+        "showStatus": null,
+        "showAiIndicator": 1,
+        "haveData": false
+    }
+}
