@@ -10,8 +10,8 @@ from mitmproxy import http
 
 
 def response(flow: http.HTTPFlow):
-    if 'id=8ac09f3684d096ba0184d0a9ee7f0461' in flow.request.pretty_url:
+    if 'query/search' in flow.request.pretty_url:
         res = json.loads(flow.response.content)
-        res['data']['draftName'] = "mitm-modify"
-        res['data']['subjectFormOid'] = "MITMOID"
+        res['data']['rows'][0]['formName'] = "mitm-modify"
+        # res['data']['subjectFormOid'] = "MITMOID"
         flow.response.text = json.dumps(res)
