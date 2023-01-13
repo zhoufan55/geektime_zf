@@ -12,12 +12,6 @@ from Itaimei_ui.utils.log import log
 class SubjectList(DataCollection):
     def __init__(self, driver):
         super().__init__(driver)
-        self.secondForm = '.rc-virtual-list-holder-inner > div:nth-child(6) > span > span'
-        self.secondFormFitem = '.filed___PvH-L > div.edc-row.content___30PRa > div.edc-col.edc-col-13.col___2cbfS > div.container___SJYHX > div > label:nth-child(1) > span:nth-child(1)'
-        self.aess_entry_from = '.top___36TF0 > div:nth-child(2) > div:nth-child(1) > div > div:nth-child(1) > div > div:nth-child(2)'
-        self.item_single_status = 'div.edc-col.edc-col-9.status___3KHqg.col___2cbfS > div > div:nth-child(2) > div'
-        self.firstFormset = '.rc-virtual-list-holder > div > div > div:nth-child(2) > span > span:nth-child(2)'
-        self.save = 'edc-btn-primary'
 
     def entry_form(self):
         self.click(By.CSS_SELECTOR, self.firstFormset)
