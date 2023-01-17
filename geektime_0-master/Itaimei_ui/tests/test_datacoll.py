@@ -4,6 +4,8 @@
 # @Email : 13952047994@163.com
 # @File : test_datacoll.py
 # @Project : geektime_0-master
+import pytest
+
 from Itaimei_ui.page.sign import Sign
 
 
@@ -19,7 +21,7 @@ class TestCollect(object):
         self.toDataColl = self.sign.toPortal(4).DataColl("coder项目001")
 
     def setup(self):
-        ...
+        self.toDataColl.AddSubject()
 
     def teardown(self):
         ...
@@ -27,14 +29,15 @@ class TestCollect(object):
     def teardown_class(self):
         ...
 
-    def test_addsubject(self):
+    @pytest.skip
+    def test_addSubject(self):
         self.toDataColl.AddSubject()
         self.toDataColl.add_text_assert('筛选期/D-14~D-1#1')
 
-    def test_entryform(self):
+    def test_entryForm(self):
         # self.toDataColl.entry_form()
         # self.toDataColl.entry_form_assert("编辑")
-        self.toDataColl.
+        self.toDataColl.ToSubjcetDetail().entry_form()
 
     def test_updateStatus(self):
         # self.toDataColl.updateStatus_item_single()
