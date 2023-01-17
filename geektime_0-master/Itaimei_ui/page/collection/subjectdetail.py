@@ -5,13 +5,21 @@
 # @File : subjectdetail.py
 # @Project : geektime_0-master
 from selenium.webdriver.common.by import By
-from Itaimei_ui.page.datacollection import DataCollection
+
+from Itaimei_ui.elementsDataCls.SubjectDataCls import SubjectElements
+from Itaimei_ui.framework.basepage import BasePage
 from Itaimei_ui.utils.log import log
 
 
-class SubjectDetail(DataCollection):
+class SubjectDetail(BasePage):
     def __init__(self, driver):
         super().__init__(driver)
+        subelemnts = SubjectElements()
+        self.firstFormset = subelemnts.firstFormset
+        self.secondForm = subelemnts.secondForm
+        self.secondFormFitem = subelemnts.secondFormFitem
+        self.save = subelemnts.save
+        self.aess_entry_from = subelemnts.aess_entry_from
 
     def entry_form(self):
         self.click(By.CSS_SELECTOR, self.firstFormset)

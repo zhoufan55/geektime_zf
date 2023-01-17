@@ -21,7 +21,8 @@ class TestCollect(object):
         self.toDataColl = self.sign.toPortal(4).DataColl("coder项目001")
 
     def setup(self):
-        self.toDataColl.AddSubject()
+        ...
+        # self.toDataColl.AddSubject()
 
     def teardown(self):
         ...
@@ -29,7 +30,7 @@ class TestCollect(object):
     def teardown_class(self):
         ...
 
-    @pytest.skip
+    # @pytest.skip
     def test_addSubject(self):
         self.toDataColl.AddSubject()
         self.toDataColl.add_text_assert('筛选期/D-14~D-1#1')
