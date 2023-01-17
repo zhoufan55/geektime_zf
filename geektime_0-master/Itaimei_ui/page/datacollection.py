@@ -35,6 +35,7 @@ class DataCollection(BasePage):
         self.item_single_status = subelemnts.item_single_status
 
     def AddSubject(self):
+        log.debug(self.new_subject)
         self.visi_wait(By.CSS_SELECTOR, self.new_subject)
         self.click(By.CSS_SELECTOR, self.new_subject)
         self.visi_wait(By.CLASS_NAME, self.save)
