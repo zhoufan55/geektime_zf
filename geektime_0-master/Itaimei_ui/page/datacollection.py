@@ -8,6 +8,7 @@
 from selenium.webdriver.chrome.webdriver import WebDriver
 from selenium.webdriver.common.by import By
 from Itaimei_ui.framework.basepage import BasePage
+from Itaimei_ui.page.collection.subjectdetail import SubjectDetail
 from Itaimei_ui.utils.log import log
 
 
@@ -35,5 +36,8 @@ class DataCollection(BasePage):
         self.visi_wait(By.CSS_SELECTOR, self.firstFormset)
         text = self.findElement(By.CSS_SELECTOR, self.firstFormset).text
         assert assrt_text in text
+
+    def ToSubjcetDetail(self):
+        return SubjectDetail(self.driver)
 
 

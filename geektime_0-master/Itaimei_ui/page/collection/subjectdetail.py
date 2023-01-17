@@ -9,7 +9,7 @@ from Itaimei_ui.page.datacollection import DataCollection
 from Itaimei_ui.utils.log import log
 
 
-class SubjectList(DataCollection):
+class SubjectDetail(DataCollection):
     def __init__(self, driver):
         super().__init__(driver)
 

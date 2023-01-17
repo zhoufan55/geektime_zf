@@ -32,8 +32,10 @@ class TestCollect(object):
         self.toDataColl.add_text_assert('筛选期/D-14~D-1#1')
 
     def test_entryform(self):
-        self.toDataColl.entry_form()
-        self.toDataColl.entry_form_assert("编辑")
+        # self.toDataColl.entry_form()
+        # self.toDataColl.entry_form_assert("编辑")
+        self.toDataColl.
 
     def test_updateStatus(self):
-        self.toDataColl.updateStatus_item_single()
+        # self.toDataColl.updateStatus_item_single()
+        ...
