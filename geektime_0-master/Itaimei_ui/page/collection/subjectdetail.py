@@ -27,8 +27,8 @@ class SubjectDetail(BasePage):
         self.click(By.CSS_SELECTOR, self.secondForm)
         self.visi_wait(By.CSS_SELECTOR, self.secondFormFitem)
         self.click(By.CSS_SELECTOR, self.secondFormFitem)
-        self.visi_wait(By.CLASS_NAME, self.save)
-        self.click(By.CLASS_NAME, self.save)
+        self.visi_wait(By.CSS_SELECTOR, self.save)
+        self.click(By.CSS_SELECTOR, self.save)
 
     def entry_form_assert(self, assrt_text):
         self.visi_wait(By.CSS_SELECTOR, self.aess_entry_from)

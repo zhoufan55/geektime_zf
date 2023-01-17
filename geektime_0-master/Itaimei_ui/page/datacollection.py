@@ -38,8 +38,8 @@ class DataCollection(BasePage):
         log.debug(self.new_subject)
         self.visi_wait(By.CSS_SELECTOR, self.new_subject)
         self.click(By.CSS_SELECTOR, self.new_subject)
-        self.visi_wait(By.CLASS_NAME, self.save)
-        self.click(By.CLASS_NAME, self.save)
+        self.visi_wait(By.CSS_SELECTOR, self.save)
+        self.click(By.CSS_SELECTOR, self.save)
 
     def add_text_assert(self, assrt_text):
         self.visi_wait(By.CSS_SELECTOR, self.firstFormset)

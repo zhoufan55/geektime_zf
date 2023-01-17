@@ -19,7 +19,7 @@ class SubjectElements(object):
     # item_single_status: str = 'div.edc-col.edc-col-9.status___3KHqg.col___2cbfS > div > div:nth-child(2) > div'
     # 1.6.1
     new_subject: str = 'div.extra___2yE38 > div > div:nth-child(6) > button'
-    save: str = 'edc-btn-primary'
+    save: str = 'button.edc-btn.edc-btn-primary'
     firstFormset: str = '.rc-virtual-list-holder-inner > div:nth-child(2)'
     secondForm: str = '.rc-virtual-list-holder-inner > div:nth-child(6)'
     secondFormFitem: str = 'div.col___2cbfS.view___VNrLn > div > div > label:nth-child(1) > span.edc-radio'
