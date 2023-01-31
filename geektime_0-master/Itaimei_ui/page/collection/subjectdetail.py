@@ -20,6 +20,10 @@ class SubjectDetail(BasePage):
         self.secondFormFitem = subelemnts.secondFormFitem
         self.save = subelemnts.save
         self.aess_entry_from = subelemnts.aess_entry_from
+        self.item_single_status = subelemnts.item_single_status
+        self.item_mutil_status = subelemnts.item_mutil_status
+        self.init_multi_records = subelemnts.init_multi_records
+        self.add_multi = subelemnts.multi_add
 
     def entry_form(self):
         self.click(By.CSS_SELECTOR, self.firstFormset)
@@ -40,7 +44,7 @@ class SubjectDetail(BasePage):
 
     def updateStatus_item_single(self):
         self.visi_wait(By.CSS_SELECTOR, self.item_single_status)
-        num = len(self.findElements(By.CSS_SELECTOR, self.item_single_status + ' > div'))
+        num = len(self.findElements(By.CSS_SELECTOR, self.item_single_status + ' > div.edc-space-item'))
         log.debug(num)
         for i in range(1, num + 1):
             log.debug(self.item_single_status + ' > div:nth-child(%d)' % i)
@@ -48,4 +52,18 @@ class SubjectDetail(BasePage):
             self.click(By.CSS_SELECTOR, self.item_single_status + ' > div:nth-child(%d)' % i)
 
     def updateStatus_item_multi(self):
-        ...
+        self.visi_wait(By.CSS_SELECTOR, self.item_mutil_status)
+        num = len(self.findElements(By.CSS_SELECTOR, self.item_mutil_status + ' > div.edc-space-item'))
+        log.debug(num)
+        for i in range(1, num + 1):
+            log.debug(self.item_mutil_status + ' > div:nth-child(%d)' % i)
+            self.visi_wait(By.CSS_SELECTOR, self.item_mutil_status + ' > div:nth-child(%d)' % i)
+            self.click(By.CSS_SELECTOR, self.item_mutil_status + ' > div:nth-child(%d)' % i)
+
+    def add_multi_record(self):
+        self.visi_wait(By.CSS_SELECTOR, self.add_multi)
+        num_init = len(self.findElements(By.CSS_SELECTOR, self.init_multi_records + ' > tr'))
+        log.debug(num_init)
+        self.click(By.CSS_SELECTOR, self.add_multi)
+        num_after = len(self.findElements(By.CSS_SELECTOR, self.init_multi_records + ' > tr'))
+        log.debug(num_after)

@@ -22,6 +22,7 @@ class TestCollect(object):
 
     def setup(self):
         self.toDataColl.AddSubject()
+        self.toDataColl.ToSubjcetDetail().entry_form()
 
     def teardown(self):
         ...
@@ -35,10 +36,13 @@ class TestCollect(object):
         self.toDataColl.add_text_assert('筛选期/D-14~D-1#1')
 
     def test_entryForm(self):
-        # self.toDataColl.entry_form()
-        # self.toDataColl.entry_form_assert("编辑")
         self.toDataColl.ToSubjcetDetail().entry_form()
 
-    def test_updateStatus(self):
-        # self.toDataColl.updateStatus_item_single()
-        ...
+    def test_updateStatus_sing(self):
+        self.toDataColl.ToSubjcetDetail().updateStatus_item_single()
+
+    def test_test_updateStatus_multi(self):
+        self.toDataColl.ToSubjcetDetail().updateStatus_item_multi()
+
+    def test_add_multi(self):
+        self.toDataColl.ToSubjcetDetail().add_multi()

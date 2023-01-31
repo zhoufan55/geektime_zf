@@ -19,9 +19,13 @@ class SubjectElements(object):
     # item_single_status: str = 'div.edc-col.edc-col-9.status___3KHqg.col___2cbfS > div > div:nth-child(2) > div'
     # 1.6.1
     new_subject: str = 'div.extra___2yE38 > div > div:nth-child(6) > button'
-    save: str = 'button.edc-btn.edc-btn-primary'
+    save: str = 'div.footer___1i7sG > div > div:nth-child(2) > button'
     firstFormset: str = '.rc-virtual-list-holder-inner > div:nth-child(2)'
     secondForm: str = '.rc-virtual-list-holder-inner > div:nth-child(6)'
     secondFormFitem: str = 'div.col___2cbfS.view___VNrLn > div > div > label:nth-child(1) > span.edc-radio'
     aess_entry_from: str = '.top___36TF0 > div:nth-child(2) > div:nth-child(1) > div > div:nth-child(1) > div > div:nth-child(2)'
-    item_single_status: str = 'div.edc-col.edc-col-9.status___3KHqg.col___2cbfS > div > div:nth-child(2) > div'
+    item_single_status: str = 'div.status___3KHqg.col___2cbfS > div > div:nth-child(2) > div'
+    item_mutil_status: str = 'th.edc-table-cell.columnAction___sKYkT.edc-table-cell-fix-right.edc-table-cell-fix-right-first.edc-table-cell-fix-sticky > div > div'
+    multi_add: str = '.tableWrapper___l10c4 > div:nth-child(1) > div > button'
+    init_multi_records: str = 'tbody.edc-table-tbody'
+
